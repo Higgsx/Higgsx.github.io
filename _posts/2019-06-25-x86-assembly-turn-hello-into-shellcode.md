@@ -1,7 +1,7 @@
 ---
 layout: post
 title:	"x86 Assembly #2: Turn 'Hello World' into shellcode"
-date:	2019-06-24 01:00:00
+date:	2019-06-24 00:00:00
 categories:
     - blog
 tags:

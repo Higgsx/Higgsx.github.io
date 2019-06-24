@@ -12,7 +12,7 @@ tags:
     - ld
 ---
 ## Hello.asm
-~~~
+{% highlight nasm %}
 ; Hello_World shellcode
 ; Target: 32-bit Linux
 ; Syscall: ssize_t write(int fd, const void *buf, size_t count)
@@ -34,7 +34,7 @@ _start:
 section .data
     message: db "Hello World!", 0x00, 0x0a
     len equ $-message
-~~~
+{% endhighlight %}
 
 First thing we have to get is numerical syscall number via unistd32.h:
 ~~~
